@@ -4,7 +4,7 @@ jobs:
      working_directory: ~/public
      docker:
         - image: circleci/node:10.15.3
-     steps
+     steps:
         - checkout
         - run:
            name: update-npm
