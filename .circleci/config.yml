@@ -1,14 +1,14 @@
 version: 2.1
 jobs:
-  build: 
+  build:
     working_directory: ~/public
     docker:
-        - image: circleci/node:10.15.3
+      - image: circleci/node:10.15.3
     steps:
       - checkout
       - run:
         name: update-npm
-        command: "sudo npm install -g npm@latest"
+        command: 'sudo npm install -g npm@latest'
       - restore_cache:
         key: dependency-cache-{{checksum "package.json"}}
       - run:
@@ -17,14 +17,14 @@ jobs:
       - save_cache:
         key: dependency-cache-{{checksum "package.json"}}
         path: node_modules/
-       - run:      
-            name: test
-           command: npm test
-        - store_artifacts:
-            path: test_result.yml
-            presfix: tests
-       - store_artifacts:
-            path: coverage
-            presfix: coverage
-        - store_test_results:
-            path: test_result.yml
+      - run:
+        name: test
+        command: npm test
+      - store_artifacts:
+        path: test_result.yml
+        presfix: tests
+      - store_artifacts:
+        path: coverage
+        presfix: coverage
+      - store_test_results:
+        path: test_result.yml
